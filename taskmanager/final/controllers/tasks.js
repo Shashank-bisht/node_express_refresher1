@@ -1,5 +1,7 @@
 const Task = require('../models/Task')
 
+
+// getting all the tasks
 const getAllTasks = async (req, res) =>{
 try {
     const tasks = await Task.find({})
@@ -9,6 +11,7 @@ try {
 }
 }
 
+// creating tasks
 const createTask = async (req, res) =>{ 
     try {
         // here Task is a model representing Task collection in database
@@ -20,15 +23,58 @@ const createTask = async (req, res) =>{
     }
     
 }
-const updateTask = (req, res) =>{
-    res.send("all items")
+
+
+const updateTask = async (req, res) =>{
+    try {
+        const {id:taskID} = req.params
+        const task = await Task.findOneAndUpdate({_id:taskID}, req.body,{
+            // it will return new tasks
+            new: true,runValidators: true
+        })
+
+        if(!task){
+            return res.status(404).json({msg: "Task not found"})
+        }
+
+        res.status(200).json({task})
+    } catch (error) {
+        res.status(500).json({msg: error.message})
+    }
 }
-const deleteTask = (req, res) =>{
-    res.send("all items")
+
+// delete tasks
+const deleteTask =async (req, res) =>{
+    try {
+        //naming id to taskID
+        const {id:taskID} = req.params; 
+        const task = await Task.findOneAndDelete({_id:taskID})
+        // naming _id to taskID
+        if(!task){
+            return res.status(404).json({msg: "Task not found"})
+        }
+        res.status(200).json({task})
+    } catch (error) {
+        res.status(500).json({msg: error.message})
+    }
 }
-const getTask = (req, res) =>{
-    res.send("all items")
+
+// get a single task
+const getTask = async (req, res) =>{
+try {
+    // destructuring id and naming it to taskID 
+    const {id:taskID} = req.params
+    const task = await Task.findOne({_id:taskID})
+    if(!task){
+        return res.status(404).json({msg: "Task not found"})
+    }
+    res.status(200).json({task})
+} catch (error) {
+    // for syntax errors
+    res.status(500).json({msg:error})
 }
+}
+
 
 
 module.exports = {getAllTasks, createTask,deleteTask,getTask,updateTask}
