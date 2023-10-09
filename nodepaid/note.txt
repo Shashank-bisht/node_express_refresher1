@@ -1,0 +1,10 @@
+modules = Encapsulated code
+commonjs , every file is module by default
+
+when weimport a module we actually invoke the module itself without actually invokeing it manually
+
+npm is the collection of packages
+npm init -y (everything is default)
+package.json - stores important info about the package
+
+package name should be unique name should not be from node modules folder
