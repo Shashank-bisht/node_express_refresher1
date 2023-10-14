@@ -13,3 +13,4 @@ A bearer token is a type of access token that is used in authentication and auth
 
 /////////////
 Authorization: Bearer <access_token>
+Bearer tokens are a type of access token used in authentication and authorization, and they are typically included in the "Authorization" header to grant access to protected resources.

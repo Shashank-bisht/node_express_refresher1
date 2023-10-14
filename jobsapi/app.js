@@ -14,11 +14,11 @@ const connectDB = require('./db/connect');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const router = require('./routes/auth');
-
-// mounting middleware with base path
-app.use('api/v1/auth', authRouter)
-app.use('api/v1/jobs', jobsRouter)
 app.use(express.json());
+// mounting middleware with base path
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/jobs', jobsRouter)
+
 // extra packages
 
 

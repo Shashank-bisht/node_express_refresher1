@@ -1,4 +1,5 @@
 require('dotenv').config()
+// to access environment variables
 require('express-async-errors')
 
 const express = require('express')
