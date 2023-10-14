@@ -5,37 +5,30 @@
  
  const jwt = require('jsonwebtoken');
 
- const CustomAPIError = require('../errors/custom-error')
+ const {BadRequestError} = require('../errors')
 
- const login = async(req, res) => {
+ const login = async(req, res) => { // extracting username and password from req.body
    const { username, password } = req.body
-
+  
    if(!username || !password){
-  throw new CustomAPIError('please provide a username and password',400)
+  throw new BadRequestError('please provide a username and password')
    }
+   //just for demo normally id is provided by db
  const id = new Date().getDate()
-
+//This is a function provided by jwt library for creating JWTs. It takes three arguments: the payload, a secret key, and options.
    const token = jwt.sign({id,username},process.env.JWT_SECRET,{expiresIn:'30d'})
+   //sending message and token to front-end(client)
    res.status(200).json({msg:'user created',token})
  }
 
+ 
  const dashboard = async(req, res) => {
-   const authHeader = req.headers.authorization;
+  console.log(req.user)
+  // if jwt is available show this data
+  const luckyNumber = Math.floor(Math.random() *100)
+  res.status(200).json({msg:`hello,${req.user.username}`,secret:` here is your no ,${luckyNumber}`})
+   // req.user is comming from auth.js
 
-   if(!authHeader || !authHeader.startsWith('Bearer ')){
-      throw new CustomAPIError('no token provided',401)
-   } 
- // getting token from header
-   const token = authHeader.split(' ')[1]
- try {
-   const decoded = jwt.verify(token,process.env.JWT_SECRET)
-   const luckyNumber = Math.floor(Math.random() *100)
-    res.status(200).json({msg:`hello,${decoded.username}`,secret:` here is your no ,${luckyNumber}`})
- } catch (error) {
-   throw new CustomAPIError("not authorized to access this route",401)
- }
-
-    
  }
 
  module.exports ={

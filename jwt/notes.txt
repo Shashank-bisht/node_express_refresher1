@@ -1,0 +1,15 @@
+To handle authentication securely with JWTs, the common practice is as follows:
+
+1  During the initial login process, the user provides their username and password.
+
+2 The server verifies the username and password, and if they are correct, it generates a JWT containing claims about the user (e.g., user ID, roles).
+
+3 The JWT is sent to the client, typically stored securely, and included in the headers of subsequent requests for authentication.
+
+
+
+///////////////
+A bearer token is a type of access token that is used in authentication and authorization protocols, particularly in the context of web APIs and HTTP.
+
+/////////////
+Authorization: Bearer <access_token>
