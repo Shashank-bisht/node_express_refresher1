@@ -18,7 +18,7 @@ const authenticationMiddleware = async (req, res, next) =>{
    // verify token by using try catch
  try {
     const decoded = jwt.verify(token,process.env.JWT_SECRET)
- //he req.user object is often used in web applications as a common practice to store information about the currently authenticated user for the duration of a request. It can be added to the req (request) object in a middleware function for easy access throughout the request-handling process.
+ //the req.user object is often used in web applications as a common practice to store information about the currently authenticated user for the duration of a request. It can be added to the req (request) object in a middleware function for easy access throughout the request-handling process.
     const {id, username} = decoded
     req.user = {id, username}
     next() 

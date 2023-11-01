@@ -18,7 +18,7 @@ const name = require('./names');
 const sayHi = require('./utils');
 
 // using sayhi function
-// sayHi(name.shanky);
+sayHi(name.shanky);
 // sayHi(name.bisht);
 console.log(name); //here name is a kind of object
 
@@ -38,3 +38,4 @@ console.log(data.singleperson.name);
 
 // even if we are not assigning it to variable or not invoking , it is getting invoked by itself
 require('./mind-graned')
+
