@@ -3,6 +3,7 @@ const app = express();
 let {people} = require('./data');
 //// Middleware to parse JSON request bodies
 app.use(express.json());
+
 app.get('/api/people',(req,res) => {
     res.status(200).json({people});
 })
@@ -18,7 +19,7 @@ app.post('/api/people',(req,res) => {
     res.status(200).json({success:true, data:[...people, name]});
 })
 
-// route for put request put is used for update data
+// route for put request put is used for  updating whole data
 app.put('/api/people/:id',(req,res) => {
     // getting id from paramaters
 const {id} = req.params;

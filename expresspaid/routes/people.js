@@ -4,7 +4,7 @@ const {
     getpeople,deletePerson,updateperson,createperson
 } = require('../controllers/peoples');
 
-
+// accessing function which is defined in controllers
 router.get('/',getpeople)
 
 // route for post request

@@ -46,8 +46,7 @@ app.get('/api/products', (req, res) => {
   })
 
 
-
-
+// : before productId indicates that productId can be a string, number or anything
   // to get price of the product with specific product id 
   app.get('/api/products/:productId/price', (req, res)=>{ //parseInt is used to convert string
     const {productId} = req.params;// Get the productId from the URL

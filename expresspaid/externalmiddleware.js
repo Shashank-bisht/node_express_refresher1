@@ -11,20 +11,20 @@ const app = express()
 //   })
 
 
-// or if we donot want to write middlewares in every request then
-// app.use(logger)
+// or if we donot want to write middlewares in every request we can use middleware as a global function using app.use
+app.use(logger)
 
 
 
 // or if we want to  use middleware on some particular request then
-app.use('/api',logger)
+// app.use('/api',logger)
 app.get('/',  (req, res) => {
     res.send('this is home')
   })
 
-  app.get('/api/about', (req, res) => {
+app.get('/api/about', (req, res) => {
     res.send('products')
-  })
+})
   app.get('/about', (req, res) => {
     res.send('this is About')
   })
