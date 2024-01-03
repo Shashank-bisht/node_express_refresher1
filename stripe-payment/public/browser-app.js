@@ -5,8 +5,9 @@ const purchase = [
   const total_amount = 10998;
   const shipping_fee = 1099;
   
+  
   var stripe = Stripe(
-    'pk_test_51I87djFp5pnuKUXgBVIHiR36vVAWyfuyb7ckrhgyDNA1kM0GWHas9ZGUAgwJSFNUxrbyE6NwlMNmls1iGSfzHDdE00DQB3y6AH'
+    'pk_test_51OUVW9SFiEtTQTOmuuTuKkBz2mXMIWfvNixmkx1QnpVZGyjU8Yjo0l6sMhPF5zJjuhEdGxDcv1HfFKGouBtIoMvE00RfYrf6l2'
   );
   
   // The items the customer wants to buy
@@ -72,6 +73,26 @@ const purchase = [
       .confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
+          billing_details: {
+            name: 'Jenny Rosen',
+            address: {
+              line1: '1 Main street',
+              city: 'San Francisco',
+              postal_code: '90210',
+              state: 'CA',
+              country: 'US',
+            },
+          },
+        },
+        shipping: {
+          name: 'Jenny Shipping',
+          address: {
+            line1: '1 Main street',
+            city: 'San Francisco',
+            postal_code: '90210',
+            state: 'CA',
+            country: 'US',
+          },
         },
       })
       .then(function (result) {

@@ -1,3 +1,5 @@
+//When you call require('dotenv').config(), it reads the .env file and sets each key-value pair as an environment variable. These environment variables are accessible in your Node.js application using process.env.
+
 require('dotenv').config()
 //Express-Async-Errors library is an amazing way to catch errors at runtime without using try/catch blocks in your async functions.
 require('express-async-errors')
