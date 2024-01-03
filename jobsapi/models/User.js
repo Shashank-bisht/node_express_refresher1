@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
     },
 })
 // we are hashing the password here because model kai lia jo logic use karna hai vo model ke file mai he hona chiye 
+
 // before saving the password hash it
 UserSchema.pre('save', async function(next){
  const salt = await bcrypt.genSalt(10);
