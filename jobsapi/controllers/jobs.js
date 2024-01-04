@@ -5,11 +5,15 @@ const getAllJobs = async (req, res) => {
   const jobs = await Job.find({ createdBy: req.user.userId }).sort("createdAt");
   res.status(200).json({ jobs, count: jobs.length });
 };
+
+// getting a single job
 const getJob = async (req, res) => {
   const {
+    // This code uses destructuring to extract the userId from token and the jobId from req.params.id
     user: { userId },
     params: { id: jobId },
   } = req;
+
   const job = await Job.findOne({
     _id: jobId,
     createdBy: userId,
@@ -17,8 +21,10 @@ const getJob = async (req, res) => {
   if (!job) {
     res.status(404);
   }
+  console.log(req)
   res.status(200).json({ job });
 };
+
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId;
   const job = await Job.create(req.body);
